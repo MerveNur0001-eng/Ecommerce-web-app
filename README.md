@@ -123,6 +123,10 @@ The project follows a **Layered Architecture**:
 * Forgot password system
 * Payment gateway integration
 
+
+<img width="1278" height="669" alt="image" src="https://github.com/user-attachments/assets/7a2df773-e786-4a5f-88ac-1930169745af" />
+
+
 ---
 
 ## ⚙️ Setup Instructions
