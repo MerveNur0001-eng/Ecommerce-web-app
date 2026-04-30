@@ -136,6 +136,7 @@ The project follows a **Layered Architecture**:
 
 <img width="1280" height="660" alt="image" src="https://github.com/user-attachments/assets/e7317b8d-2edc-4864-88b3-fa6c8fb2428a" />
 
+<img width="1276" height="654" alt="image" src="https://github.com/user-attachments/assets/d1bb7df0-2afc-4993-b1da-a4a720d80d6f" />
 
 ---
 
