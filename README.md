@@ -231,7 +231,7 @@ or run via Visual Studio (IIS Express / Kestrel)
 
 ## 👩‍💻 Author
 
-Developed by **Merve**
+Developed by **Merve Nur Çalçoban**
 
 ---
 
