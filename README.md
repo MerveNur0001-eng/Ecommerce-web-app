@@ -208,11 +208,10 @@ or run via Visual Studio (IIS Express / Kestrel)
 
 ## ⚠️ Important Notes
 
-* `.gitignore` protects sensitive data
-* Never upload real API keys
-* Use `appsettings.Example.json` for sharing structure
-* Project follows clean layered architecture principles
-
+- This project follows clean layered architecture principles.
+- Sensitive information is excluded using `.gitignore`.
+- To run the project, rename `appsettings.Example.json` to `appsettings.json` and configure your own credentials.
+- 
 ---
 
 ## 👩‍💻 Author
