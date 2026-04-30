@@ -69,9 +69,11 @@ The project follows a **Layered Architecture**:
 * Product management (add, update, delete)
 * Category & brand management
 * Order tracking system
-* Slider management
+* Address management
 * User management
-
+* Slider management
+* Coupon management
+  
 ### 🛒 User Side
 
 * Product browsing
