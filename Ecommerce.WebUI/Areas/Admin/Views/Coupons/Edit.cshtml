@@ -1,0 +1,76 @@
+﻿@model Ecommerce.Core.Entities.Coupon
+
+@{
+    ViewData["Title"] = "Edit Coupon";
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-area="Admin"
+              asp-controller="Coupons"
+              asp-action="Edit"
+              method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Hidden Fields -->
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreateDate" />
+            <input type="hidden" asp-for="UsedCount" />
+
+            <!-- CODE -->
+            <div class="form-group mb-3">
+                <label asp-for="Code"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+
+            <!-- DISCOUNT -->
+            <div class="form-group mb-3">
+                <label asp-for="DiscountPercent"></label>
+                <input asp-for="DiscountPercent" class="form-control" />
+                <span asp-validation-for="DiscountPercent" class="text-danger"></span>
+            </div>
+
+            <!-- START DATE -->
+            <div class="form-group mb-3">
+                <label asp-for="StartDate"></label>
+                <input asp-for="StartDate" class="form-control" type="datetime-local" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+
+            <!-- END DATE -->
+            <div class="form-group mb-3">
+                <label asp-for="EndDate"></label>
+                <input asp-for="EndDate" class="form-control" type="datetime-local" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <!-- USAGE LIMIT -->
+            <div class="form-group mb-3">
+                <label asp-for="UsageLimit"></label>
+                <input asp-for="UsageLimit" class="form-control" />
+                <span asp-validation-for="UsageLimit" class="text-danger"></span>
+            </div>
+
+            <!-- IS ACTIVE -->
+            <div class="form-group mb-3">
+                <label asp-for="IsActive"></label>
+                <input asp-for="IsActive" type="checkbox" />
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+
+            <!-- SAVE BUTTON -->
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">
+                    Save
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>

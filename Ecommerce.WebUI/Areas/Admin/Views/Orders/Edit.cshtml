@@ -1,0 +1,81 @@
+﻿@model Ecommerce.Core.Entities.Order
+
+@{
+    ViewData["Title"] = "Edit Order";
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-area="Admin"
+              asp-controller="Orders"
+              asp-action="Edit"
+              method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Hidden Fields -->
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="OrderDate" />
+            <input type="hidden" asp-for="OrderNumber" />
+            <input type="hidden" asp-for="TotalPrice" />
+            <input type="hidden" asp-for="AppUserId" />
+            <input type="hidden" asp-for="CustomerId" />
+
+            <!-- Order Number -->
+            <div class="form-group mb-3">
+                <label>Order Number</label>
+                <input class="form-control" value="@Model.OrderNumber" readonly />
+            </div>
+
+            <!-- Total Price -->
+            <div class="form-group mb-3">
+                <label>Total Price</label>
+                <input class="form-control" value="@Model.TotalPrice" readonly />
+            </div>
+
+            <!-- USER -->
+            <div class="form-group mb-3">
+                <label>User</label>
+                <input class="form-control"
+                       value="@(Model.AppUser != null ? Model.AppUser.Name + " " + Model.AppUser.Surname : "")"
+                       readonly />
+            </div>
+
+            <!-- ORDER STATE -->
+            <div class="form-group mb-3">
+                <label asp-for="OrderState"></label>
+                <select asp-for="OrderState"
+                        class="form-select"
+                        asp-items="ViewBag.OrderStates">
+                    <option value="">Select</option>
+                </select>
+                <span asp-validation-for="OrderState" class="text-danger"></span>
+            </div>
+
+            <!-- BILLING ADDRESS -->
+            <div class="form-group mb-3">
+                <label asp-for="BillingAddress"></label>
+                <input asp-for="BillingAddress" class="form-control" />
+                <span asp-validation-for="BillingAddress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="DeliveryAddress"></label>
+                <input asp-for="DeliveryAddress" class="form-control" />
+                <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+            </div>
+
+            <!-- SAVE BUTTON -->
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">
+                    Save
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>

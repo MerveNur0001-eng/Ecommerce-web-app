@@ -1,0 +1,96 @@
+﻿@model Ecommerce.Core.Entities.Address
+
+@{
+    ViewData["Title"] = "Edit Address";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Edit Address</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form asp-action="Edit">
+
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <!-- Hidden Fields -->
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="AddressGuid" />
+                        <input type="hidden" asp-for="CreateDate" />
+
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label fw-semibold"></label>
+                            <input asp-for="Title" class="form-control rounded-2" placeholder="Home, Office..." />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <!-- City -->
+                        <div class="mb-3">
+                            <label asp-for="City" class="form-label fw-semibold"></label>
+                            <input asp-for="City" class="form-control rounded-2" placeholder="City" />
+                            <span asp-validation-for="City" class="text-danger small"></span>
+                        </div>
+
+                        <!-- District -->
+                        <div class="mb-3">
+                            <label asp-for="District" class="form-label fw-semibold"></label>
+                            <input asp-for="District" class="form-control rounded-2" placeholder="District" />
+                            <span asp-validation-for="District" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mb-3">
+                            <label asp-for="OpenAddress" class="form-label fw-semibold"></label>
+                            <textarea asp-for="OpenAddress"
+                                      class="form-control rounded-2"
+                                      rows="3"
+                                      placeholder="Full address..."></textarea>
+                            <span asp-validation-for="OpenAddress" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Checkboxes -->
+                        <div class="mb-3">
+
+                            <div class="form-check mb-2">
+                                <input asp-for="IsActive" class="form-check-input" />
+                                <label asp-for="IsActive" class="form-check-label fw-semibold"></label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input asp-for="IsBillingAddress" class="form-check-input" />
+                                <label asp-for="IsBillingAddress" class="form-check-label fw-semibold"></label>
+                            </div>
+
+                            <div class="form-check">
+                                <input asp-for="IsDeliveryAddress" class="form-check-input" />
+                                <label asp-for="IsDeliveryAddress" class="form-check-label fw-semibold"></label>
+                            </div>
+
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success py-2 fw-bold">
+                                Save Changes
+                            </button>
+
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                Back to List
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

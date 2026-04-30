@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Ecommerce.Core.Entities.Order>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<section class="container my-5">
+    <div class="mb-4">
+        <h2 class="fw-bold text-dark">My Orders</h2>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center py-5">
+            <p class="h5">You have no orders yet.</p>
+            <a href="/" class="btn btn-primary mt-3">Start Shopping</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead>
+                    <tr class="table-light">
+                        <th>Order No</th>
+                        <th>Total Amount</th>
+                        <th>Order Date</th>
+                        <th>Order Summary</th>
+                        <th>Order Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        @* Main Order Row *@
+                        <tr class="table-light">
+                            <td class="fw-bold">@order.Id</td>
+                            <td class="text-success fw-bold">
+                                $@order.TotalPrice.ToString("N2")
+                            </td>
+                            <td>@order.OrderDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                            <td>@order.OrderLines.Count Items</td>
+                            <td>
+                                @(order.OrderState.ToString() == "Waiting"
+                                                        ? "Pending Approval"
+                                                        : order.OrderState.ToString())
+                    </td>
+                </tr>
+
+                        <tr>
+                            <td colspan="5" class="p-0">
+                                <table class="table table-sm mb-0 bg-white">
+                                    <thead>
+                                        <tr class="text-dark small">
+                                            <th style="width: 80px;" class="ps-4"></th>
+                                            <th>Product</th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-end pe-4">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                @foreach (var item in order.OrderLines)
+                                        {
+                                            <tr class="border-0">
+                                                <td class="ps-4">
+                                                    <img src="/Img/Products/@item.Product.Image"
+                                                         alt="@item.Product.Name"
+                                                         width="40"
+                                                         height="40"
+                                                         style="object-fit: cover;" />
+                                                </td>
+                                                <td>@item.Product.Name</td>
+                                                <td class="text-center">
+                                                    $@item.UnitPrice.ToString("N2")
+                                                </td>
+                                                <td class="text-center">@item.Quantity</td>
+                                                <td class="text-end pe-4 text-success fw-bold">
+                                                    $@((item.Quantity * item.UnitPrice).ToString("N2"))
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
+                        @* Spacer *@
+                        <tr style="height: 20px;" class="border-0">
+                            <td colspan="5" class="border-0"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

@@ -1,0 +1,256 @@
+﻿@model CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<section class="container my-5">
+
+    <div class="text-center mb-4">
+        <h1 class="display-4">Checkout</h1>
+    </div>
+
+    @if (Model.CartProducts != null && Model.CartProducts.Any())
+    {
+        <hr />
+
+        <div class="row g-4">
+
+            <!-- LEFT SIDE -->
+            <div class="col-md-8">
+
+                <!-- COUPON -->
+                <form asp-controller="Cart" asp-action="ApplyCoupon" method="post">
+                    <div class="card shadow-sm mb-4 border-0">
+                        <div class="card-header bg-light fw-bold">
+                            Coupon Code
+                        </div>
+
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text"
+                                       name="CouponCode"
+                                       class="form-control"
+                                       placeholder="Enter coupon code" />
+
+                                <button type="submit" class="btn btn-primary">
+                                    Apply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- CART TABLE -->
+                <div class="card shadow-sm mb-4 border-0">
+                    <div class="card-header bg-light fw-bold">
+                        Cart Items
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th class="text-center">Qty</th>
+                                    <th>Line Total</th>
+                                    <th>Discounted</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.CartProducts)
+                                {
+                                    var lineTotal = item.Quantity * item.Product.Price;
+
+                                    var discountRate = (Model.TotalPrice > 0 && Model.DiscountAmount > 0)
+                                    ? (Model.DiscountAmount / Model.TotalPrice)
+                                    : 0;
+
+                                    var discountedTotal = lineTotal - (lineTotal * discountRate);
+
+                                    <tr>
+                                        <td>
+                                            <img src="/Img/Products/@item.Product.Image"
+                                                 height="50"
+                                                 class="rounded border" />
+                                        </td>
+
+                                        <td class="fw-semibold">
+                                            @item.Product.Name
+                                        </td>
+
+                                        <td>
+                                            @item.Product.Price.ToString("c")
+                                        </td>
+
+                                        <td class="text-center">
+                                            @item.Quantity
+                                        </td>
+
+                                        <td>
+                                            @lineTotal.ToString("c")
+                                        </td>
+
+                                        <td class="text-success fw-bold">
+                                            @(Model.DiscountAmount > 0 ? discountedTotal.ToString("c") : "-")
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ADDRESSES -->
+                @if (Model.Addresses == null || Model.Addresses.Count == 0)
+                {
+                    <div class="alert alert-warning text-center shadow-sm">
+                        <h5 class="fw-bold text-danger">No Address Found</h5>
+                        <p>You need to add an address before placing an order.</p>
+
+                        <a asp-controller="MyAddresses"
+                           asp-action="Create"
+                           class="btn btn-danger">
+                            Add Address
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <form asp-action="Checkout" method="post">
+
+                        <div class="my-5">
+                            <h3>Delivery & Billing Address</h3>
+
+                            <div class="row row-cols-1 row-cols-md-2 g-3">
+
+                                @foreach (var item in Model.Addresses)
+                                {
+                                    <div class="col">
+                                        <div class="card h-100 shadow-sm">
+
+                                            <div class="card-header">
+                                                <input type="radio"
+                                                       name="DeliveryAddress"
+                                                       value="@item.AddressGuid"
+                                                       @(item.IsDeliveryAddress ? "checked" : "") />
+                                                <strong>@item.Title</strong>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <p class="text-muted small">
+                                                    @item.OpenAddress <br />
+                                                    @item.District / @item.City
+                                                </p>
+
+                                                <input type="radio"
+                                                       name="BillingAddress"
+                                                       value="@item.AddressGuid"
+                                                       @(item.IsBillingAddress ? "checked" : "") />
+                                                Use as Billing Address
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <!-- PAYMENT -->
+                        <div class="card shadow-sm mb-4">
+                            <div class="card-header fw-bold">
+                                Payment
+                            </div>
+
+                            <div class="card-body">
+
+                                <input type="text" name="CardNameSurname" class="form-control mb-2" placeholder="Name on Card" required />
+                                <input type="number" name="CardNumber" class="form-control mb-2" placeholder="Card Number" required />
+
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="number" name="CardMonth" class="form-control mb-2" placeholder="Month" required />
+                                    </div>
+                                    <div class="col">
+                                        <input type="number" name="CardYear" class="form-control mb-2" placeholder="Year" required />
+                                    </div>
+                                </div>
+
+                                <input type="number" name="CVV" class="form-control mb-3" placeholder="CVV" required />
+
+                                <button class="btn btn-success w-100">
+                                    Pay Now
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </form>
+                }
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="col-md-4">
+
+                <div class="card shadow-sm sticky-top border-0" style="top:20px;">
+                    <div class="card-header bg-light fw-bold">
+                        Order Summary
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span>@Model.TotalPrice.ToString("c")</span>
+                        </div>
+
+                        @if (Model.DiscountAmount > 0)
+                        {
+                            <div class="d-flex justify-content-between mb-2 text-danger">
+                                <span>Discount (@Model.CouponCode)</span>
+                                <span>-@Model.DiscountAmount.ToString("c")</span>
+                            </div>
+                        }
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping</span>
+                            <span class="text-success">
+                                @(Model.TotalPrice > 99 ? "Free" : "₺99")
+                            </span>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between fw-bold fs-5">
+                            <span>Total</span>
+                            <span class="text-primary">
+                                @Model.FinalPrice.ToString("c")
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="text-center my-5">
+            <div class="alert alert-warning shadow-sm p-4">
+                <h3>Your cart is empty</h3>
+                <p class="text-muted">Add products to continue.</p>
+                <a href="/" class="btn btn-primary px-4 mt-2">Start Shopping</a>
+            </div>
+        </div>
+    }
+
+</section>

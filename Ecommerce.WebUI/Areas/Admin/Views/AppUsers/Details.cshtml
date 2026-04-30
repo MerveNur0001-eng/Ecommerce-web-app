@@ -1,0 +1,48 @@
+﻿@model AppUser
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+
+<div>
+    <hr />
+
+    <dl class="row">
+
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.Name)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.Name)</dd>
+
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.Surname)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.Surname)</dd>
+
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.Email)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.Email)</dd>
+
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.Phone)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.Phone)</dd>
+
+        
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.UserName)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.UserName)</dd>
+
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.IsActive)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.IsActive)</dd>
+
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.IsAdmin)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.IsAdmin)</dd>
+
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.CreateDate)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.CreateDate)</dd>
+
+        <dt class="col-md-3">@Html.DisplayNameFor(m => m.UserGuid)</dt>
+        <dd class="col-md-9">@Html.DisplayFor(m => m.UserGuid)</dd>
+
+    </dl>
+
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

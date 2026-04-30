@@ -1,0 +1,39 @@
+﻿@model HomePageViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<partial name="_Slider" model="Model.Sliders" />
+
+<div class="container">
+
+    @if (Model.Products?.Any() == true)
+    {
+        <section class="my-5">
+            <h1 class="text-center mb-4">Products</h1>
+
+            <div class="row gx-4 gy-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                @foreach (var item in Model.Products)
+                {
+                    <partial name="_ProductView" model="item" />
+                }
+            </div>
+        </section>
+    }
+
+    @if (Model.News?.Any() == true)
+    {
+        <section class="my-5">
+            <h1 class="text-center mb-4">Campaigns</h1>
+
+            <div class="row gx-4 gy-4 justify-content-center row-cols-1 row-cols-md-2">
+                @foreach (var item in Model.News)
+                {
+                    <partial name="_NewsView" model="item" />
+                }
+            </div>
+        </section>
+    }
+
+</div>

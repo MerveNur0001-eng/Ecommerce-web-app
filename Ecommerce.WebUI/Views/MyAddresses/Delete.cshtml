@@ -1,0 +1,82 @@
+﻿@model Ecommerce.Core.Entities.Address
+
+@{
+    ViewData["Title"] = "Delete Address";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm border-0 rounded-3">
+
+                <!-- HEADER -->
+                <div class="card-header bg-danger text-white text-center">
+                    <h4 class="mb-0">Delete Address</h4>
+                </div>
+
+                <!-- BODY -->
+                <div class="card-body">
+
+                    <div class="alert alert-warning text-center">
+                        <strong>Are you sure?</strong><br />
+                        This action cannot be undone.
+                    </div>
+
+                    <div class="mb-3">
+                        <h6 class="fw-bold text-muted">Address Details</h6>
+                        <hr />
+                    </div>
+
+                    <div class="mb-2">
+                        <strong>Title:</strong> @Model.Title
+                    </div>
+
+                    <div class="mb-2">
+                        <strong>City:</strong> @Model.City
+                    </div>
+
+                    <div class="mb-2">
+                        <strong>District:</strong> @Model.District
+                    </div>
+
+                    <div class="mb-2">
+                        <strong>Address:</strong><br />
+                        <span class="text-muted">@Model.OpenAddress</span>
+                    </div>
+
+                    <div class="mt-3">
+                        <span class="badge bg-success me-2">
+                            Active: @(Model.IsActive ? "Yes" : "No")
+                        </span>
+
+                        <span class="badge bg-info me-2">
+                            Billing: @(Model.IsBillingAddress ? "Yes" : "No")
+                        </span>
+
+                        <span class="badge bg-primary">
+                            Delivery: @(Model.IsDeliveryAddress ? "Yes" : "No")
+                        </span>
+                    </div>
+
+                    <!-- ACTIONS -->
+                    <form asp-action="Delete" class="mt-4">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger fw-bold">
+                                Delete Address
+                            </button>
+
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

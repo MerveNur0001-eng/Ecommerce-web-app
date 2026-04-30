@@ -1,0 +1,60 @@
+﻿@model Ecommerce.Core.Entities.Order
+
+@{
+    ViewData["Title"] = "Add an order";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="OrderNumber" class="control-label"></label>
+                <input asp-for="OrderNumber" class="form-control" />
+                <span asp-validation-for="OrderNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="TotalPrice" class="control-label"></label>
+                <input asp-for="TotalPrice" class="form-control" />
+                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="AppUserId" class="control-label"></label>
+                <input asp-for="AppUserId" class="form-control" />
+                <span asp-validation-for="AppUserId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="BillingAddress" class="control-label"></label>
+                <input asp-for="BillingAddress" class="form-control" />
+                <span asp-validation-for="BillingAddress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="DeliveryAddress" class="control-label"></label>
+                <input asp-for="DeliveryAddress" class="form-control" />
+                <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="OrderDate" class="control-label"></label>
+                <input asp-for="OrderDate" class="form-control" type="datetime-local" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

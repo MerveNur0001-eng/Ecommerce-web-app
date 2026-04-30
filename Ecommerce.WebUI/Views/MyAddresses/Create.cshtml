@@ -1,0 +1,74 @@
+﻿@model Ecommerce.Core.Entities.Address
+
+@{
+    ViewData["Title"] = "Create Address";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Add New Address</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form asp-action="Create" method="post">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label"></label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="City" class="form-label"></label>
+                            <input asp-for="City" class="form-control" />
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="District" class="form-label"></label>
+                            <input asp-for="District" class="form-control" />
+                            <span asp-validation-for="District" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="OpenAddress" class="form-label"></label>
+                            <textarea asp-for="OpenAddress" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="OpenAddress" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input asp-for="IsActive" class="form-check-input" />
+                            <label asp-for="IsActive" class="form-check-label"></label>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input asp-for="IsBillingAddress" class="form-check-input" />
+                            <label asp-for="IsBillingAddress" class="form-check-label"></label>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input asp-for="IsDeliveryAddress" class="form-check-input" />
+                            <label asp-for="IsDeliveryAddress" class="form-check-label"></label>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">
+                            Save Address
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

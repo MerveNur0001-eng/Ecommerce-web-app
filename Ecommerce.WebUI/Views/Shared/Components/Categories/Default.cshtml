@@ -1,0 +1,25 @@
+﻿@using Ecommerce.Core.Entities
+@model IEnumerable<Category>
+
+@foreach (var mainCategory in Model.Where(c => c.ParentId == 0))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            @mainCategory.Name
+        </a>
+
+		@if (Model.Where(c => c.ParentId == mainCategory.Id) is not null && Model.Where(c => c.ParentId == mainCategory.Id).Count() > 0)
+        {
+            <ul class="dropdown-menu">
+                @foreach (var subCategory in Model.Where(c => c.ParentId == mainCategory.Id))
+                {
+                    <li>
+                        <a class="dropdown-item" href="/Categories/Index/@subCategory.Id">
+                            @subCategory.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+    </li>
+}

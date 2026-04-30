@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<style>
+    #datatablesSimple {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+        #datatablesSimple td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+    td.fixed-height {
+        max-width: 180px;
+    }
+</style>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">
+        <i class="fa-solid fa-plus"></i> Add New Product
+    </a>
+</p>
+
+<table id="datatablesSimple">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Code</th>
+            <th>Stock</th>
+            <th>Active</th>
+            <th>Home</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Order</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="fixed-height">@item.Name</td>
+
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <a href="~/Img/Products/@item.Image" target="_blank">
+                            <img src="~/Img/Products/@item.Image" height="40" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img src="~/Img/no-image.png" height="40" />
+                    }
+
+                    <a href="/Admin/ProductImages/Create?productId=@item.Id" target="_blank" class="btn btn-sm">
+                        +
+                    </a>
+
+                    <a href="/Admin/ProductImages?productId=@item.Id" target="_blank" class="btn btn-sm">
+                        🖼
+                    </a>
+                </td>
+
+                <td>@item.Price</td>
+                <td>@item.ProductCode</td>
+                <td>@item.Stock</td>
+                <td>@item.IsActive</td>
+                <td>@item.IsHome</td>
+                <td class="fixed-height">@item.Category?.Name</td>
+                <td>@item.Brand?.Name</td>
+                <td>@item.OrderNo</td>
+
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.Id">View</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', event => {
+
+            const table = document.getElementById('datatablesSimple');
+
+            if (table) {
+                new simpleDatatables.DataTable(table, {
+                    searchable: true,
+                    sortable: true,
+                    perPage: 10,
+                    perPageSelect: [5, 10, 15, 20, 50],
+                    labels: {
+                        placeholder: "Search...",
+                        noRows: "No data found",
+                        info: "Showing {start} to {end} of {rows} entries"
+                    }
+                });
+            }
+
+        });
+    </script>
+
+}

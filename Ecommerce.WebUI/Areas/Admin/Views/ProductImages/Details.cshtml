@@ -1,0 +1,36 @@
+﻿@model Ecommerce.Core.Entities.ProductImage
+
+@{
+    ViewData["Title"] = "Product Image Details";
+}
+
+<h4>Product Image Details</h4>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Image</dt>
+        <dd class="col-sm-9">
+            <img src="/Img/Products/@Model.Name" height="100" />
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class="col-sm-3">
+            Product
+        </dt>
+        <dd class="col-sm-9">
+            @Model.Product?.Name
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</div>
