@@ -113,7 +113,7 @@ The project follows a **Layered Architecture**:
 ---
 
 ## 🖼️ Features Highlights
-
+* Contact Forms
 * Multiple images per product
 * Category & brand system
 * Wishlist functionality
@@ -131,6 +131,10 @@ The project follows a **Layered Architecture**:
 <img width="1280" height="636" alt="image" src="https://github.com/user-attachments/assets/60efac74-345e-445a-ad96-3fc8413a4089" />
 
 <img width="1271" height="665" alt="image" src="https://github.com/user-attachments/assets/db578be8-76e0-42a7-8a40-5a5d56052b1d" />
+
+<img width="1274" height="670" alt="image" src="https://github.com/user-attachments/assets/a6af57a8-ad5c-42a7-9650-3d61f1d08909" />
+
+<img width="1280" height="660" alt="image" src="https://github.com/user-attachments/assets/e7317b8d-2edc-4864-88b3-fa6c8fb2428a" />
 
 
 ---
