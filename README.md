@@ -228,7 +228,6 @@ or run via Visual Studio (IIS Express / Kestrel)
 - This project follows clean layered architecture principles.
 - Sensitive information is excluded using `.gitignore`.
 - To run the project, rename `appsettings.Example.json` to `appsettings.json` and configure your own credentials.
-- 
 ---
 
 ## 👩‍💻 Author
